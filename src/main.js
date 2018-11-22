@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+Vue.use(iView);
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 Vue.config.productionTip = false
 
