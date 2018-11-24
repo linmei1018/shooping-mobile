@@ -18,6 +18,12 @@ export default {
 <style>
   body{
     margin:0;
+    width:100%;
+    height:100%;
+    background:#fafafa;
+  }
+  li{
+    list-style: none;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -25,6 +31,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-bottom:40px;
+  margin:40px 0;
+  background:#fff;
 }
 </style>

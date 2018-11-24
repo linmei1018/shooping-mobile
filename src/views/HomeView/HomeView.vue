@@ -69,7 +69,10 @@
         </ul>
       </div>
     </div>
-    <!--<button>查看更多</button>-->
+    <button>查看更多</button>
+    <div class="shop_cart_fiexd">
+      <Icon type="md-cart" size="24" />
+    </div>
   </div>
 </template>
 <script>
