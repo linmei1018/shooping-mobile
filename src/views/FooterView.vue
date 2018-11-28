@@ -1,7 +1,7 @@
 <template>
   <div>
     <mt-tabbar fixed v-model="selected">
-      <router-link to="/home" tag="div">
+      <router-link to="/" tag="div">
         <mt-tab-item id="首页">
           <Icon type="md-home" size="20" />
           <p>首页</p>
@@ -34,13 +34,16 @@
       return{
         selected:'首页'
       }
+    },
+    mounted(){
+
     }
   }
 </script>
 <style>
-  /*.mint-tabbar{*/
-    /*background-color:#d4237a;*/
-  /*}*/
+  .mint-tabbar{
+    background-color:#fff;
+  }
   .mint-tabbar > div{
     flex:1;
     height:40px;

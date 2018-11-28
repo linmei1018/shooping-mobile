@@ -15,11 +15,6 @@ export default new Router({
       component: HomeView
     },
     {
-      path: '/home',
-      name: 'HomeView',
-      component: HomeView
-    },
-    {
       path: '/shopping_cart',
       name: 'ShoppingCart',
       component: ShoppingCart
