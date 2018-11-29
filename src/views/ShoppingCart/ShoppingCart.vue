@@ -195,7 +195,12 @@
       }
     },
     mounted(){
-
+      sessionStorage.shopCartNum = this.shopCartList.length;
+      this.isCheckedAll = true;
+      this.shopCartList.forEach((item,index)=>{
+        item.checked = true;
+        this.selectedShopArr.splice(index, 1, true);
+      })
     },
 
   }

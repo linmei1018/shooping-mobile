@@ -69,7 +69,9 @@
         </ul>
       </div>
     </div>
-    <button>查看更多</button>
+    <div class="all_babies">
+      <button >查看全部宝贝</button>
+    </div>
     <div class="shop_cart_fiexd">
       <Icon type="md-cart" size="24" />
     </div>
