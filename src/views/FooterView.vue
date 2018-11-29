@@ -1,7 +1,7 @@
 <template>
   <div>
     <mt-tabbar fixed v-model="selected">
-      <router-link to="/" tag="div">
+      <router-link to="/home" tag="div">
         <mt-tab-item id="首页">
           <Icon type="md-home" size="20" />
           <p>首页</p>
@@ -19,7 +19,7 @@
           <p>收藏</p>
         </mt-tab-item>
       </router-link>
-      <router-link to="/my" tag="div">
+      <router-link to="/order_list" tag="div">
         <mt-tab-item id="我的">
           <Icon type="md-person"  size="20" />
           <p>我的</p>

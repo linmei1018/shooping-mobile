@@ -3,9 +3,7 @@
 </style>
 <template>
   <div>
-    <mt-header fixed title="我的收藏" >
-      <!--<router-link to="/" slot="left"><Icon type="ios-arrow-back" /></router-link>-->
-    </mt-header>
+    <mt-header fixed title="我的收藏" ></mt-header>
     <div class="collect_content">
       <ul>
         <li v-for="item in collectList" class="collect_list">
@@ -25,7 +23,7 @@
         </li>
       </ul>
       <div class="guess_like">
-        <p style="background:#eee;padding-top:10px;color:grey;">- 队长猜你喜欢 -</p>
+        <p style="background:#eee;padding-top:10px;color:grey;">- 店长猜你喜欢 -</p>
         <ul>
           <li>
             <Row style="background:#eee;padding:10px;" type="flex" justify="space-between" >

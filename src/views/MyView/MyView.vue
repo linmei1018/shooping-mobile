@@ -12,7 +12,7 @@
       <div class="top">
         <mt-cell
           title="我的订单"
-          to="//github.com"
+          to="/order_list'"
           is-link
           value="查看全部订单">
         </mt-cell>
@@ -60,6 +60,9 @@
       return{
         shopCount: Number(sessionStorage.shopCartNum),
       }
+    },
+    methods:{
+
     }
   }
 </script>
