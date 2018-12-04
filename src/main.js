@@ -9,6 +9,10 @@ Vue.use(iView);
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
+import './api/mock.js'
+import axios from 'axios'
+Vue.prototype.$http=axios
+
 
 Vue.config.productionTip = false
 

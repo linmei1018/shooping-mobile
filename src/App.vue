@@ -34,4 +34,7 @@ export default {
   margin:40px 0;
   background:#fff;
 }
+  .mint-header{
+    background-color:#d4237a;
+  }
 </style>

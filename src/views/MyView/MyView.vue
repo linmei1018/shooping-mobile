@@ -12,27 +12,17 @@
       <div class="top">
         <mt-cell
           title="我的订单"
-          to="/order_list'"
+          to="/my/order_list"
           is-link
           value="查看全部订单">
         </mt-cell>
         <div class="View_state">
           <Row>
-            <Col span="6">
-              <img src="../../assets/my_icon/Pending_payment.png" />
-              <p>待付款</p>
-            </Col>
-            <Col span="6">
-              <img src="../../assets/my_icon/To_be_shipped.png" />
-              <p>待发货</p>
-            </Col>
-            <Col span="6">
-              <img src="../../assets/my_icon/Shipped.png" />
-              <p>已发货</p>
-            </Col>
-            <Col span="6">
-              <img src="../../assets/my_icon/Completed.png" />
-              <p>已完成</p>
+            <Col span="6" v-for="item in orderState" :key="item.id">
+              <div @click="toOrderList(item.id)">
+                <img :src="item.img" />
+                <p>{{ item.name }}</p>
+              </div>
             </Col>
           </Row>
         </div>
@@ -59,10 +49,38 @@
     data(){
       return{
         shopCount: Number(sessionStorage.shopCartNum),
+        orderState:[
+          {
+            id: 'PendingPayment',
+            img: require('../../assets/my_icon/Pending_payment.png'),
+            name: '待付款'
+          },
+          {
+            id: 'ToBeShipped',
+            img: require('../../assets/my_icon/To_be_shipped.png'),
+            name: '待发货'
+          },
+          {
+            id: 'Shipped',
+            img: require('../../assets/my_icon/Shipped.png'),
+            name: '已发货'
+          },
+          {
+            id: 'Completed',
+            img: require('../../assets/my_icon/Completed.png'),
+            name: '已完成'
+          },
+        ]
       }
     },
     methods:{
-
+      toOrderList(name){
+        this.$router.push('/my/order_list');
+        sessionStorage.orderName = name;
+      }
+    },
+    mounted(){
+      sessionStorage.orderName = 'Whole';
     }
   }
 </script>

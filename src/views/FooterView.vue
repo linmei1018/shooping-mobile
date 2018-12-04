@@ -19,7 +19,7 @@
           <p>收藏</p>
         </mt-tab-item>
       </router-link>
-      <router-link to="/order_list" tag="div">
+      <router-link to="/my" tag="div">
         <mt-tab-item id="我的">
           <Icon type="md-person"  size="20" />
           <p>我的</p>
@@ -35,8 +35,15 @@
         selected:'首页'
       }
     },
-    mounted(){
-
+    watch: {
+      selected: function (val) {
+        this.$router.push({
+          val,
+          query: {
+            t: +new Date() //保证每次点击路由的query项都是不一样的，确保会重新刷新view
+          }
+        });
+      }
     }
   }
 </script>

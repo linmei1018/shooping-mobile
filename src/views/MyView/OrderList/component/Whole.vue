@@ -7,7 +7,7 @@
     <ul v-else>
       <li  v-for="item in orderTransactionList" :key="item.order_id">
         <div class="whole_shop_title">
-          <p>下单时间：<span>{{ item.order_time }}</span></p>
+          <p>下单时间：<span>{{ MenuComponent }}</span></p>
           <a>{{ item.deal_done }}</a>
         </div>
         <Row class='whole-shop-list' type="flex" justify="space-between">
@@ -25,7 +25,7 @@
             </div>
           </Col>
         </Row>
-        <p class="total_sum">合计：<span style="color:red;">{{ item.shop_total }}</span></p>
+        <p class="total_sum">合计：<span style="color:red;">{{ item.shop_total|formatMoney }}</span></p>
         <div class="look_logistics">
           <Button size="small">查看物流</Button>
         </div>
@@ -35,44 +35,31 @@
 </template>
 <script>
   export default {
+    props:{
+      MenuComponent:{
+        type:String,
+        default:''
+      },
+      orderTransactionList:{
+        type:Array,
+        default:function () {
+          return []
+        }
+      },
+    },
     data(){
       return{
-        orderTransactionList:[
-          {
-            order_id: 1,
-            order_time:'2018-11-28',
-            deal_done:'交易完成',
-            img: require('../../../../assets/shopping-icon/need_buy_clothes/need10.png'),
-            shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
-            shop_price: 69,
-            shop_remark: '备注分为嘎Greg经理',
-            shop_num: 1,
-            shop_total: 69
-          },
-          {
-            order_id: 2,
-            order_time:'2018-11-25',
-            deal_done:'交易完成',
-            img: require('../../../../assets/shopping-icon/need_buy_clothes/need17.png'),
-            shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
-            shop_price: 199,
-            shop_remark: '备注分为嘎Greg经理',
-            shop_num: 1,
-            shop_total: 199
-          },
-          {
-            order_id: 3,
-            order_time:'2018-11-12',
-            deal_done:'交易完成',
-            img: require('../../../../assets/shopping-icon/need_buy_clothes/need08.png'),
-            shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
-            shop_price: 49,
-            shop_remark: '备注分为嘎Greg经理',
-            shop_num: 1,
-            shop_total: 49
-          }
-        ]
+
       }
+    },
+    filters:{
+      formatMoney(value){
+        value = Number(value);
+        return "￥"+ value.toFixed(2);
+      }
+    },
+    mounted(){
+      // console.log(this.MenuComponent);
     }
   }
 </script>
