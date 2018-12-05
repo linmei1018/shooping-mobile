@@ -6,7 +6,7 @@
     <mt-header fixed title="我的收藏" ></mt-header>
     <div class="collect_content">
       <ul>
-        <li v-for="item in collectList" class="collect_list">
+        <li v-for="(item,index) in collectList" class="collect_list" :key="index">
           <Row>
             <Col span="8">
               <img :src="item.img" />
@@ -16,7 +16,9 @@
               <span class="text_remark">{{ item.shopRemark }}</span>
               <div class="money_nub">
                 <span class="money_text">{{ item.unitPrice | formatMoney }}</span>
-                <button class="add_to_cart">加入购物车</button>
+                <button v-if="item.isActive" class="add_to_cart_active" @click="addToShopCart(index)">已加入购物车</button>
+                <button v-else class="add_to_cart" @click="addToShopCart(index)">加入购物车</button>
+
               </div>
             </Col>
           </Row>
@@ -76,12 +78,18 @@
         </ul>
       </div>
     </div>
+    <div class="shop_cart_fiexd" @click="goShopCart">
+      <Badge :count="shopCartNum">
+        <Icon type="md-cart" size="24" />
+      </Badge>
+    </div>
   </div>
 </template>
 <script>
   export default {
     data () {
       return {
+        shopCartNum: 0,
         collectList:[   //购物车列表数据
           {
             shopID: 1,
@@ -89,6 +97,7 @@
             shopTitle:'商品介绍j可分为几个配角安排给附加额外加分',
             shopRemark:'备注分为嘎Greg经理1',
             unitPrice: 69,  //单价
+            isActive: false
           },
           {
             shopID: 2,
@@ -96,6 +105,7 @@
             shopTitle:'商品介绍j可分为几个配角安排给附加额外加分',
             shopRemark:'备注分为嘎Greg经理1',
             unitPrice: 79,  //单价
+            isActive: false
           },
 
         ]
@@ -107,6 +117,21 @@
         return "￥"+ value.toFixed(2);
       }
     },
+    methods:{
+      addToShopCart(index){
+        this.collectList[index].isActive = true;
+        let count=0;
+        this.collectList.forEach((item)=>{
+          if (item.isActive === true) {
+            count++
+          }
+        });
+        this.shopCartNum = Number(count);
+      },
+      goShopCart(){
+        this.$router.push('/shopping_cart');
+      }
+    }
   }
 </script>
 <style>
@@ -116,5 +141,17 @@
   .ivu-card-body{
     padding:10px;
   }
+  /*购物车固定图标*/
+    .shop_cart_fiexd{
+      position:fixed;
+      bottom:70px;
+      right:15px;
+      width:40px;
+      height:40px;
+      background:#fff;
+      border-radius:40px;
+      line-height:40px;
+      box-shadow:0 0 10px 2px #eee;
+    }
 </style>
 
