@@ -15,10 +15,12 @@
       <div class="coupon__title">上新日优惠折上折 仅限3天</div>
       <Row type="flex" justify="space-around" class="code-row-bg">
         <Col span="7"  class="coupon-item"   v-for="(couponItem,index) in couponList"  :key="index">
-          <span class='cou-sign'>￥</span>
-          <h3 class='cou-money'>{{ couponItem.money }}</h3>
-          <p class='cou-use-method'>{{ couponItem.useMethod }}</p>
-          <span class='cou-time'>{{ couponItem.time }}</span>
+          <div @click="Coupon(index)">
+            <span class='cou-sign'>￥</span>
+            <h3 class='cou-money'>{{ couponItem.money }}</h3>
+            <p class='cou-use-method'>{{ couponItem.useMethod }}</p>
+            <span class='cou-time'>{{ couponItem.time }}</span>
+          </div>
         </Col>
       </Row>
     </div>
@@ -81,23 +83,7 @@
   export default {
     data(){
       return{
-        couponList:[
-          {
-            money:10,
-            useMethod:'满99元使用',
-            time:'11.19-21'
-          },
-          {
-            money: 20,
-            useMethod: '满199元使用',
-            time: '11.19-21'
-          },
-          {
-            money: 30,
-            useMethod: '满299元使用',
-            time: '11.19-21'
-          }
-        ],
+        couponList:[],
         classifyList:[
           {
             clothesName:'羽绒服',
@@ -235,17 +221,26 @@
           require('../../assets/shopping-icon/need_buy_clothes/need16.png'),
           require('../../assets/shopping-icon/need_buy_clothes/need17.png'),
         ],
-
       }
     },
     methods:{
+      Coupon(index){
+        let title = index;
+        this.$router.push('/home/coupon/'+title);
+      },
       init(){
-
+        this.$http({
+          method:'get',
+          url:'/couponList'
+        }).then(res => {
+          this.couponList = res.data.couponList;
+        })
       }
     },
     mounted(){
       this.init();
     }
   }
+
 </script>
 

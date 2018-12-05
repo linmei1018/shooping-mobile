@@ -39,13 +39,13 @@ export default new Router({
         require(['@/views/MyView/OrderList/OrderList'], resolve)
       }
     },
-    // {
-    //   path: '/my/order_list',
-    //   name:'OrderList',
-    //   component: resolve => {
-    //     require(['@/views/MyView/OrderList/OrderList'], resolve)
-    //   }
-    // },
+    {
+      path: '/home/coupon/:title',
+      name:'Coupon',
+      component: resolve => {
+        require(['@/views/HomeView/component/Coupon'], resolve)
+      }
+    },
 
   ]
 })

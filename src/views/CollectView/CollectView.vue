@@ -18,7 +18,6 @@
                 <span class="money_text">{{ item.unitPrice | formatMoney }}</span>
                 <button v-if="item.isActive" class="add_to_cart_active" @click="addToShopCart(index)">已加入购物车</button>
                 <button v-else class="add_to_cart" @click="addToShopCart(index)">加入购物车</button>
-
               </div>
             </Col>
           </Row>

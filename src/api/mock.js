@@ -85,4 +85,24 @@ Mock.mock('/orderTransactionList', {   //'/list'  =>接口地址,Mock变量提�
       ]
     }
   ]
-})
+});
+Mock.mock('/couponList', {
+  'couponList':[
+    {
+      money:10,
+      useMethod:'满99元使用',
+      time:'11.19-21'
+    },
+    {
+      money: 20,
+      useMethod: '满199元使用',
+      time: '11.19-21'
+    },
+    {
+      money: 30,
+      useMethod: '满299元使用',
+      time: '11.19-21'
+    }
+  ],
+});
+
