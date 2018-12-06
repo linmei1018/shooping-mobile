@@ -46,6 +46,12 @@ export default new Router({
         require(['@/views/HomeView/component/Coupon'], resolve)
       }
     },
-
+    {
+      path: '/home/cloth/:hotIndex',
+      name:'Cloth',
+      component: resolve => {
+        require(['@/views/HomeView/component/ClothingStyle'], resolve)
+      }
+    },
   ]
 })

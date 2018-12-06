@@ -10,7 +10,7 @@ Mock.mock('/orderTransactionList', {   //'/list'  =>接口地址,Mock变量提�
           order_id: 1,
           order_time:'2018-11-28',
           deal_done:'交易完成',
-          img: '../assets/shopping-icon/need_buy_clothes/need10.png',
+          img: '../../../../assets/shopping-icon/need_buy_clothes/need10.png',
           shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
           shop_price: 69,
           shop_remark: '备注分为嘎Greg经理',
@@ -53,7 +53,7 @@ Mock.mock('/orderTransactionList', {   //'/list'  =>接口地址,Mock变量提�
           order_id: 1,
           order_time:'2018-11-28',
           deal_done:'交易完成',
-          img: '../../src/assets/shopping-icon/need_buy_clothes/need10.png',
+          img: '../../../assets/shopping-icon/need_buy_clothes/need10.png',
           shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
           shop_price: 69,
           shop_remark: '备注分为嘎Greg经理',
@@ -64,7 +64,7 @@ Mock.mock('/orderTransactionList', {   //'/list'  =>接口地址,Mock变量提�
           order_id: 2,
           order_time:'2018-11-25',
           deal_done:'交易完成',
-          img: '../src/assets/shopping-icon/need_buy_clothes/need17.png',
+          img: '../../../assets/shopping-icon/need_buy_clothes/need17.png',
           shop_introduce: '商品介绍jfd房间看大哥了德国大使馆',
           shop_price: 199,
           shop_remark: '备注分为嘎Greg经理',
@@ -105,4 +105,5 @@ Mock.mock('/couponList', {
     }
   ],
 });
+
 

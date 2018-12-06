@@ -27,7 +27,7 @@
     <div class='HOT-classify'>
       <p class='Hot-title'>热门分类</p>
       <ul class="clothes-classify">
-        <li class='classify-list' v-for="(hotItem,index) in classifyList"  :key="index">
+        <li class='classify-list' v-for="(hotItem,index) in classifyList" :key="index" @click="ClothingStyle(index)">
           <div class="classify-item">{{hotItem.clothesName}}</div>
           <img class='clothes-img' :src="hotItem.clothesImg" />
         </li>
@@ -224,9 +224,14 @@
       }
     },
     methods:{
+      //优惠券
       Coupon(index){
         let title = index;
         this.$router.push('/home/coupon/'+title);
+      },
+      //热门分类
+      ClothingStyle(hotIndex){
+        this.$router.push('/home/cloth/'+hotIndex);
       },
       init(){
         this.$http({
