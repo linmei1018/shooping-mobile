@@ -53,5 +53,12 @@ export default new Router({
         require(['@/views/HomeView/component/ClothingStyle'], resolve)
       }
     },
+    {
+      path: '/home/cloth/shopDetails',
+      name:'Details',
+      component: resolve => {
+        require(['@/views/HomeView/component/CommodityDetails'], resolve)
+      }
+    },
   ]
 })

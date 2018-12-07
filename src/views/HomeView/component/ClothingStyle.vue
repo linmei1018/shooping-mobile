@@ -13,7 +13,7 @@
         <mt-tab-item id="2">销量</mt-tab-item>
         <mt-tab-item id="3">新品</mt-tab-item>
         <mt-tab-item id="4" style="position:relative;">价格
-          <img v-if="sortNum === 0" src="../../../assets/other_icon/sort.png" class="sort_normal"  @click="sort(0)">
+          <img v-if="sortNum === 0 || selected !== '4'" src="../../../assets/other_icon/sort.png" class="sort_normal"  @click="sort(0)">
           <img v-else-if="sortNum === 1" src="../../../assets/other_icon/sort_up.png" class="sortIcon" @click="sort(1)">
           <img v-else="sortNum === 2" src="../../../assets/other_icon/sort_down.png" class="sortIcon" @click="sort(2)">
         </mt-tab-item>
@@ -25,9 +25,10 @@
         </div>
       </mt-navbar>
       <!-- tab-container -->
+      <!-- 这里应该可以简写的，出现的问题是：<mt-tab-container-item  id="1"> 要怎么绑定id的？我试了下没有成功，所以放弃了，以后再琢磨-->
       <mt-tab-container v-if="!transform" v-model="selected">
           <mt-tab-container-item  id="1">
-            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.hotId">
+            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.hotId" @click="goDetails">
               <Row class='burst-list' type="flex" justify="space-between">
                 <Col span="6">
                   <img class='big-img' :src="clothItem.img"  />
@@ -39,7 +40,7 @@
                     <div class='positionbox'>
                       <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
                       <span  class="grey">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16"  class="img"  />
+                      <Icon type="md-cart" size="16"  class="img" @click="addShopCart(clothItem)" />
                     </div>
                   </div>
                 </Col>
@@ -59,7 +60,7 @@
                     <div class='positionbox'>
                       <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
                       <span class="grey">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16"  class="img" />
+                      <Icon type="md-cart" size="16"  class="img" @click="addShopCart(clothItem)" />
                     </div>
                   </div>
                 </Col>
@@ -79,7 +80,7 @@
                     <div class='positionbox'>
                       <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
                       <span class="grey">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16" class="img" />
+                      <Icon type="md-cart" size="16" class="img" @click="addShopCart(clothItem)" />
                     </div>
                   </div>
                 </Col>
@@ -99,7 +100,7 @@
                     <div class='positionbox'>
                       <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
                       <span class="grey">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16" class="img" />
+                      <Icon type="md-cart" size="16" class="img" @click="addShopCart(clothItem)" />
                     </div>
                   </div>
                 </Col>
@@ -107,7 +108,7 @@
             </div>
           </mt-tab-container-item>
       </mt-tab-container>
-      <!--2-->
+      <!--tab-container2-->
       <mt-tab-container v-else v-model="selected">
         <mt-tab-container-item  id="1">
             <Row class="tab_container_2" type="flex" justify="space-between" >
@@ -119,7 +120,7 @@
                     <div class='positionbox' style="color:red;">
                       <span>￥{{ clothItem.money }}</span>
                       <span class="paymentsNub">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16" class="cart" />
+                      <Icon type="md-cart" size="16" class="cart" @click="addShopCart(clothItem)" />
                     </div>
                   </div>
                 </Card>
@@ -136,7 +137,7 @@
                   <div class='positionbox'>
                     <span>￥{{ clothItem.money }}</span>
                     <span class="paymentsNub">{{ clothItem.paymentsNub }}</span>
-                    <Icon type="md-cart" size="16" class="cart" />
+                    <Icon type="md-cart" size="16" class="cart" @click="addShopCart(clothItem)" />
                   </div>
                 </div>
               </Card>
@@ -153,7 +154,7 @@
                   <div class='positionbox'>
                     <span>￥{{ clothItem.money }}</span>
                     <span class="paymentsNub" >{{ clothItem.paymentsNub }}</span>
-                    <Icon type="md-cart" size="16" class="cart" />
+                    <Icon type="md-cart" size="16" class="cart" @click="addShopCart(clothItem)" />
                   </div>
                 </div>
               </Card>
@@ -170,7 +171,7 @@
                   <div class='positionbox'>
                     <span>￥{{ clothItem.money }}</span>
                     <span class="paymentsNub" style="">{{ clothItem.paymentsNub }}</span>
-                    <Icon type="md-cart" size="16" class="cart" />
+                    <Icon type="md-cart" size="16" class="cart" @click="addShopCart(clothItem)" />
                   </div>
                 </div>
               </Card>
@@ -179,11 +180,60 @@
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
+    <!-- 进入购物车页面图标 -->
     <div class="shop_cart_fiexd" @click="goShopCart">
-      <!--<Badge :count="shopCartNum">-->
+      <Badge :count="shopCartNum">
         <Icon type="md-cart" size="24" />
-      <!--</Badge>-->
+      </Badge>
     </div>
+    <!--弹窗 begin-->
+    <mt-popup
+      v-model="popupVisible"
+      position="bottom">
+      <div class="popup_header">
+          <div class="popup_img">
+            <img src="../../../assets/shopping-icon/need_buy_clothes/need16.png">
+          </div>
+          <div class="popup_title">
+            <p style="color:red;">￥{{ closeModal.money }}</p>
+            <p>库存{{ closeModal.stock }}件</p>  <!-- 这个是这款衣服的总库存，跟据选择的颜色和身高，库存都不一样，这一步没有做哦-->
+            <p v-if="selectedColor === ''&& selectedHeight===''">选择 颜色分类 参考身高</p>
+            <p v-else-if="selectedColor&& selectedHeight===''">选择 参考身高</p>
+            <p v-else="selectedColor&& selectedHeight">已选择:"{{ selectedColor }}" "{{ selectedHeight }}"</p>
+          </div>
+          <div class="popup_close" @click="close">
+            <Icon type="md-close" size="20"/>
+          </div>
+      </div>
+      <div class="popup_container">
+        <div class="color_classify">
+          <p>颜色分类</p>
+          <ul class="color_list">
+            <li v-for="colorItem in closeModal.colorList"
+                :class="selectedColor===colorItem?'color-list-checked':'color-list'"
+                @click="selectedColor=colorItem">{{ colorItem }}</li>
+          </ul>
+        </div>
+        <div class="reference_height">
+          <p>参考身高</p>
+          <ul class="height_list">
+            <li v-for="heightItem in closeModal.heightList"
+                :class="selectedHeight===heightItem?'height-list-checked':'height-list'"
+                @click="selectedHeight=heightItem">{{ heightItem }}</li>
+          </ul>
+        </div>
+        <div class="buy_nub">
+          <p>购买数量</p>
+          <div class="increase_btn">
+            <a @click="increase(-1)"><Icon type="md-remove" size="16"  /></a>
+            <span class="number">{{ closeModal.buyNumber }}</span>
+            <a @click="increase(1)"><Icon type="md-add" size="16" /></a>
+          </div>
+        </div>
+      </div>
+      <Button type="warning" long class="sure_btn" @click="sureAddToShopCart">确定</Button>
+    </mt-popup>
+    <!--弹窗 end-->
   </div>
 </template>
 <script>
@@ -196,10 +246,23 @@
         transform: false,
         clothDataCopy:[],
         searchKey:'',
-        sortNum: 0
+        sortNum: 0 ,
+        shopCartNum: 0,  //购物车数量
+        //弹窗
+        popupVisible: false, //弹窗开关
+        closeModal:{
+            money:'258',
+            stock:'147',  //库存
+            colorList:['米白','红色','黑色'],
+            heightList:['100cm','110cm','120cm','130cm','140cm','150cm'],
+            buyNumber: 1 ,  //购买数量
+        },
+        selectedColor: '', // 已选择的颜色
+        selectedHeight: '', // 已选择的身高
       }
     },
     methods:{
+      //跳转到购物车页面
       goShopCart(){
         this.$router.push('/shopping_cart');
       },
@@ -227,8 +290,7 @@
       },
       //排序
       sort(num){
-        // this.sortNum = num;
-
+        //0:默认;1:升;2:降
         if(num === 0){
           this.sortNum = 1;
           return this.clothList[3].sort((a,b)=>a.money-b.money)  //升
@@ -239,11 +301,43 @@
           this.sortNum = 1;
           return this.clothList[3].sort((a,b)=>a.money-b.money)  //升
         }
-
-        //0:默认;1:升;2:降
-
-        //
       },
+      //打开弹窗
+      addShopCart(clothItem){
+        this.popupVisible = true;
+        this.closeModal.money = clothItem.money;
+      },
+      //确认添加到购物车
+      sureAddToShopCart(){
+        this.popupVisible = false;
+        this.shopCartNum = this.closeModal.buyNumber;
+        this.selectedColor = '';
+        this.selectedHeight = '';
+        this.closeModal.buyNumber = 1;
+      },
+      //增减数量
+      increase(way){
+        if(way > 0){
+          this.closeModal.buyNumber++;
+        }else{
+          this.closeModal.buyNumber--;
+          if(this.closeModal.buyNumber<1){
+            this.closeModal.buyNumber=1;
+          }
+        }
+      },
+      //关闭弹窗
+      close(){
+        this.selectedColor = '';
+        this.selectedHeight = '';
+        this.closeModal.buyNumber = 1;
+        this.popupVisible = false;
+      },
+      //进入商品详情页面
+      goDetails(){ alert(1)
+        this.$router.push('/home/cloth/shopDetails');
+      },
+      //初始化
       init(){
         let index = this.$route.params.hotIndex;
         let list = [];
@@ -371,5 +465,126 @@
     border-radius:40px;
     line-height:40px;
     box-shadow:0 0 10px 2px #eee;
+  }
+  /*弹窗*/
+  .mint-popup-bottom{
+    width:100%;
+  }
+  .popup_header{
+    height:80px;
+    margin: 10px;
+    border-bottom:1px solid #eee;
+    .popup_img{
+      width:100px;height:92px;padding:2px;
+      margin:-30px 10px 10px 10px;background:#fff;
+      float:left;
+      img{
+        width:95px;height:88px;
+      }
+    }
+    .popup_title{
+      text-align:left;
+      width:56%;
+      float:left;
+      padding-top:10px;
+    }
+    .popup_close{
+      float:right;
+    }
+  }
+  .popup_container{
+    margin:0 10px;
+    padding-bottom:80px;
+    text-align:left;
+    .color_classify{
+      height:60px;
+      border-bottom:1px solid #eee;
+      .color_list .color-list{
+        float:left;
+        width:40px;
+        height:26px;
+        margin:5px 10px 5px 0;
+        background:#f1f3f4;
+        line-height:26px;
+        text-align:center;
+        border-radius:10px;
+        text-decoration:underline;
+      }
+      .color_list .color-list-checked{
+        float:left;
+        width:40px;
+        height:26px;
+        margin:5px 10px 5px 0;
+        background:orange;
+        color:#fff;
+        line-height:26px;
+        text-align:center;
+        border-radius:10px;
+        text-decoration:underline;
+      }
+    }
+    .reference_height{
+      height:100px;
+      padding-top:5px;
+      border-bottom:1px solid #eee;
+      .height_list .height-list{
+        float:left;
+        width:50px;
+        height:26px;
+        text-align:center;
+        line-height:26px;
+        margin:5px 10px 5px 0;
+        border-radius:10px;
+        background:#f1f3f4;
+        text-decoration:underline;
+      }
+      .height_list .height-list-checked{
+        float:left;
+        width:50px;
+        height:26px;
+        text-align:center;
+        line-height:26px;
+        margin:5px 10px 5px 0;
+        border-radius:10px;
+        background:orange;
+        color:#fff;
+        text-decoration:underline;
+      }
+    }
+    .buy_nub{
+      height:50px;
+      line-height:50px;
+      border-bottom:1px solid #eee;
+      p{
+        float:left;
+      }
+      .increase_btn{
+        width:100px;
+        height:26px;
+        float:right;
+        text-align:center;
+        line-height:26px;
+        background:#f1f3f4;
+        border-radius:3px;
+        margin-top:12px;
+        a{
+          width:30px;
+          display:inline-block;
+        }
+        .number{
+          width:33px;
+          display:inline-block;
+          height:26px;
+          border-left:1px solid #fff;
+          border-right:1px solid #fff;
+        }
+      }
+    }
+    .sure_btn{
+      border-radius:0;
+    }
+  }
+  .ivu-btn>span{
+    text-decoration:underline;
   }
 </style>

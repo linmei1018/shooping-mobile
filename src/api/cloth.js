@@ -9,20 +9,36 @@ Mock.mock('/PopularClassificationList', {
           navbarId: 1,
           clothList:[
             {
-              title:'男童羽绒服冬季新款毛领羽绒衣小童男宝宝白鸭绒洋气冬装潮童装厚',
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 199,
+              paymentsNub: '42人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 189,
+              paymentsNub: '31人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
               remark:'范加尔我i规划',
               img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
-              money: 199,
-              paymentsNub: '19人付款'
+              money: 219,
+              paymentsNub: '13人付款'
             },
             {
-              title:'儿童羽绒服韩版洋气90白鸭绒男宝宝轻薄羽绒衣潮小童男童冬季保暖',
+              title:'封我个哈的感觉好啦发生的',
               remark:'范加尔我i规划',
-              img:"@image('200x100', '#eee', 'Hello')",
+              img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
-              money: 189,
-              paymentsNub: '19人付款'
+              money: 179,
+              paymentsNub: '29人付款'
             }
           ]
         },
@@ -30,12 +46,36 @@ Mock.mock('/PopularClassificationList', {
           navbarId: 2,
           clothList:[
             {
-              title:'儿童羽绒服男童羽绒衣2018冬季新款韩版童装男宝宝短款加厚冬装潮',
+              title:'封我个哈的感觉好啦发生的',
               remark:'范加尔我i规划',
-              img:"@image('200x100', '#4A7BF7', 'Hello')",
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 199,
-              paymentsNub: '19人付款'
+              paymentsNub: '42人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 189,
+              paymentsNub: '31人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 179,
+              paymentsNub: '29人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 219,
+              paymentsNub: '13人付款'
             }
           ]
         },
@@ -45,18 +85,34 @@ Mock.mock('/PopularClassificationList', {
             {
               title:'封我个哈的感觉好啦发生的',
               remark:'范加尔我i规划',
-              img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 199,
-              paymentsNub: '19人付款'
+              paymentsNub: '42人付款'
             },
             {
               title:'封我个哈的感觉好啦发生的',
               remark:'范加尔我i规划',
               img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
+              money: 179,
+              paymentsNub: '29人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
               money: 189,
-              paymentsNub: '19人付款'
+              paymentsNub: '31人付款'
+            },
+            {
+              title:'封我个哈的感觉好啦发生的',
+              remark:'范加尔我i规划',
+              img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
+              Postage:'包邮',
+              money: 219,
+              paymentsNub: '13人付款'
             }
           ]
         },
@@ -69,7 +125,7 @@ Mock.mock('/PopularClassificationList', {
               img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 199,
-              paymentsNub: '19人付款'
+              paymentsNub: '42人付款'
             },
             {
               title:'封我个哈的感觉好啦发生的',
@@ -77,7 +133,7 @@ Mock.mock('/PopularClassificationList', {
               img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 189,
-              paymentsNub: '19人付款'
+              paymentsNub: '31人付款'
             },
             {
               title:'封我个哈的感觉好啦发生的',
@@ -85,7 +141,7 @@ Mock.mock('/PopularClassificationList', {
               img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 219,
-              paymentsNub: '19人付款'
+              paymentsNub: '13人付款'
             },
             {
               title:'封我个哈的感觉好啦发生的',
@@ -93,7 +149,7 @@ Mock.mock('/PopularClassificationList', {
               img:'../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',
               money: 179,
-              paymentsNub: '19人付款'
+              paymentsNub: '29人付款'
             }
           ]
         }
