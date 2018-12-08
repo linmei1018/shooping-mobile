@@ -1,6 +1,6 @@
-# shooping-web
+# shooping-mobile
 
-> A Vue.js project
+> 手机端购物网站
 
 ## Build Setup
 
@@ -18,4 +18,12 @@ npm run build
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# remarks
+> 因为是模拟手机电话页面，有些功能还未开发
+
+## Donation
+
+如果对您有帮助，您可以点右上角 "Star" 支持一下，谢谢！ 或者您可以 "follow" 一下，鞭策我项目不断的完善。
+
+## 觉得不错 赏个咖啡 让作者打起精神 ~
+<img src="./src/assets/QR-code.png" width="400px" height="460px" >
