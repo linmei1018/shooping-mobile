@@ -54,7 +54,7 @@ export default new Router({
       }
     },
     {
-      path: '/home/cloth/shopDetails',
+      path: '/home/cloth/shopDetails/:id',
       name:'Details',
       component: resolve => {
         require(['@/views/HomeView/component/CommodityDetails'], resolve)

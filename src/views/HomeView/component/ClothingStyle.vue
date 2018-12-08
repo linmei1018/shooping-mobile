@@ -28,7 +28,7 @@
       <!-- 这里应该可以简写的，出现的问题是：<mt-tab-container-item  id="1"> 要怎么绑定id的？我试了下没有成功，所以放弃了，以后再琢磨-->
       <mt-tab-container v-if="!transform" v-model="selected">
           <mt-tab-container-item  id="1">
-            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.hotId" @click="goDetails">
+            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.id" @click="goDetails(clothItem.id)">
               <Row class='burst-list' type="flex" justify="space-between">
                 <Col span="6">
                   <img class='big-img' :src="clothItem.img"  />
@@ -334,8 +334,8 @@
         this.popupVisible = false;
       },
       //进入商品详情页面
-      goDetails(){ alert(1)
-        this.$router.push('/home/cloth/shopDetails');
+      goDetails(id){ console.log(id)
+        this.$router.push('/home/cloth/shopDetails/'+ id);
       },
       //初始化
       init(){
