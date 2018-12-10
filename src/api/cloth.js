@@ -10,7 +10,7 @@ Mock.mock('/PopularClassificationList', {
           clothList:[
             {
               id:12346544,
-              title:'封我个哈的感觉好啦发生的',
+              title:'封我个哈的感觉好啦发生的分解我估计哦大家过来哈圣诞节规范和进口',
               remark:'范加尔我i规划',
               img:'../../../../assets/shopping-icon/need_buy_clothes/need16.png',
               Postage:'包邮',

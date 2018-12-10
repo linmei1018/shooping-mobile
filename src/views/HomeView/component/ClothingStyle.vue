@@ -28,23 +28,25 @@
       <!-- 这里应该可以简写的，出现的问题是：<mt-tab-container-item  id="1"> 要怎么绑定id的？我试了下没有成功，所以放弃了，以后再琢磨-->
       <mt-tab-container v-if="!transform" v-model="selected">
           <mt-tab-container-item  id="1">
-            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.id" @click="goDetails(clothItem.id)">
-              <Row class='burst-list' type="flex" justify="space-between">
-                <Col span="6">
-                  <img class='big-img' :src="clothItem.img"  />
-                </Col>
-                <Col span="18" class="tab_item">
-                  <div class='textExplain'>
-                    <h3 class='red-title'>{{clothItem.title}}</h3>
-                    <p class="postage">{{ clothItem.Postage }}</p>
-                    <div class='positionbox'>
-                      <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
-                      <span  class="grey">{{ clothItem.paymentsNub }}</span>
-                      <Icon type="md-cart" size="16"  class="img" @click="addShopCart(clothItem)" />
+            <div class="tab_container_1" v-for="clothItem in clothList[0]" :key="clothItem.id" >
+              <div style="width:90%" @click="goDetails(clothItem.id)">
+                <Row class='burst-list' type="flex" justify="space-between">
+                  <Col span="6">
+                    <img class='big-img' :src="clothItem.img"  />
+                  </Col>
+                  <Col span="17" class="tab_item">
+                    <div class='textExplain'>
+                      <h3 class='title'>{{clothItem.title}}</h3>
+                      <p class="postage">{{ clothItem.Postage }}</p>
+                      <div class='positionbox'>
+                        <span>￥{{ clothItem.money }}</span>&nbsp;&nbsp;
+                        <span  class="grey">{{ clothItem.paymentsNub }}</span>
+                      </div>
                     </div>
-                  </div>
-                </Col>
-              </Row>
+                  </Col>
+                </Row>
+              </div>
+              <Icon type="md-cart" size="16"  class="img" @click="addShopCart(clothItem)" />
             </div>
           </mt-tab-container-item>
           <mt-tab-container-item  id="2">
@@ -367,7 +369,7 @@
     .header{
       height:40px;
       width:100%;
-      background:#d4237a;
+      background-color: #d4237a;
       text-align:left;
       line-height:40px;
       padding:0 10px;
@@ -393,11 +395,17 @@
       }
       .tab_container_1{
         width:100%;
+        position:relative;
         .big-img{
           width:80px;height:80px;
         }
         .tab_item{
           border-bottom:1px solid #eee;padding:6px;text-align:left;
+          .title{
+            width:100%;
+            height:40px;
+            overflow:hidden;
+          }
           .postage{
             font-size:12px;color:grey;
           }
@@ -406,10 +414,13 @@
             .grey{
               color:grey;
             }
-            .img{
-              float:right;
-            }
           }
+        }
+        .img{
+          position:absolute;
+          right:10px;
+          bottom:10px;
+          color:red;
         }
       }
       .tab_container_2{
@@ -484,7 +495,7 @@
     }
     .popup_title{
       text-align:left;
-      width:56%;
+      width:53%;
       float:left;
       padding-top:10px;
     }
