@@ -1,5 +1,5 @@
 <style lang="less">
-  @import "./ShopingCart.less";
+  @import "ShoppingCart.less";
 </style>
 <template>
   <div>

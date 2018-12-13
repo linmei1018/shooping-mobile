@@ -41,7 +41,7 @@
           </Row>
           <p class="total_sum">合计：<span style="color:red;">{{ item.shop_total|formatMoney }}</span></p>
           <div class="look_logistics">
-            <Button size="small">查看物流</Button>
+            <Button size="small" @click="lookLogistics(item.order_id)">查看物流</Button>
           </div>
         </li>
       </ul>
@@ -49,13 +49,7 @@
   </div>
 </template>
 <script>
-  const Whole = resolve => require(['@/views/MyView/OrderList/component/Whole'], resolve);
-  // const PendingPayment = resolve => require(['@/views/MyView/OrderList/component/PendingPayment'], resolve);
-  // const ToBeShipped = resolve => require(['@/views/MyView/OrderList/component/ToBeShipped'], resolve);
-  // const Shipped = resolve => require(['@/views/MyView/OrderList/component/Shipped'], resolve);
-  // const Completed = resolve => require(['@/views/MyView/OrderList/component/Completed'], resolve);
   export default {
-    // components: { Whole},
     data(){
       return{
         theme1:'light',
@@ -96,6 +90,9 @@
             this.orderTransactionList = this.menuList[4].orderTransactionList;
         }
       },
+      lookLogistics(id){
+        this.$router.push('/my/order_list/Look_logistics/'+ id);
+      }
     },
     mounted(){
       this.$http({

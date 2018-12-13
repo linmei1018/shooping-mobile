@@ -199,8 +199,9 @@
           <div class="popup_title">
             <p style="color:red;">￥{{ closeModal.money }}</p>
             <p>库存{{ closeModal.stock }}件</p>  <!-- 这个是这款衣服的总库存，跟据选择的颜色和身高，库存都不一样，这一步没有做哦-->
-            <p v-if="selectedColor === ''&& selectedHeight===''">选择 颜色分类 参考身高</p>
-            <p v-else-if="selectedColor&& selectedHeight===''">选择 参考身高</p>
+            <p v-if="selectedColor === ''&& selectedHeight===''">请选择 颜色分类 参考身高</p>
+            <p v-else-if="selectedColor&& selectedHeight===''">请选择 参考身高</p>
+            <p v-else-if="selectedHeight&& selectedColor===''">请选择 颜色分类</p>
             <p v-else="selectedColor&& selectedHeight">已选择:"{{ selectedColor }}" "{{ selectedHeight }}"</p>
           </div>
           <div class="popup_close" @click="close">

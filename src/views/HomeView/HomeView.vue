@@ -36,36 +36,38 @@
     <div class='Bursting-clothes'>
       <p class='burst-title'>掌柜力荐明星爆款</p>
       <Card  class='burst-view' v-for="(item,index) in borstList" :key="item.id">
-        <Row class='burst-list' type="flex" justify="space-between">
-          <Col span="8">
-            <img class='big-img' :src="item.bigImg" />
-          </Col>
-          <Col span="16">
-            <div class='textExplain'>
-              <img class='hot-icon' src='../../assets/shopping-icon/burst_clothes/hot.png' />
-              <h3 class='red-title'>{{item.redTitle}}</h3>
-              <p :class="item.firstImg ? 'firstImgText':'black-title'">{{item.blackTitle}}</p>
-              <p v-if="item.firstImg" :class="item.firstImg ? 'firstImgText2':'black-title'">{{item.spanTitle}}</p>
-              <div :class="item.firstImg ? 'firstImg':'color-list'" >
-                <img class='small-img'  v-for="(imgItem,imgIndex) in borstList[index].colorList"  :key="'i'+imgIndex" :src='imgItem' />
+        <Row class='burst-list' type="flex" justify="space-between" >
+          <div @click="goGoodsDetails('burst'+item.id)">
+            <Col span="8">
+              <img class='big-img' :src="item.bigImg" />
+            </Col>
+            <Col span="16">
+              <div class='textExplain'>
+                <img class='hot-icon' src='../../assets/shopping-icon/burst_clothes/hot.png' />
+                <h3 class='red-title'>{{item.redTitle}}</h3>
+                <p :class="item.firstImg ? 'firstImgText':'black-title'">{{item.blackTitle}}</p>
+                <p v-if="item.firstImg" :class="item.firstImg ? 'firstImgText2':'black-title'">{{item.spanTitle}}</p>
+                <div :class="item.firstImg ? 'firstImg':'color-list'" >
+                  <img class='small-img'  v-for="(imgItem,imgIndex) in borstList[index].colorList"  :key="'i'+imgIndex" :src='imgItem' />
+                </div>
+                <div class='clear'></div>
+                <div class='positionbox'v-if="item.firstImg" >
+                  <button class='buyBtnFirstImg'>点击购买</button>
+                </div>
+                <div v-else class='positionbox'>
+                  <span class='span-title'>{{item.spanTitle}}</span>
+                  <button class='buyBtn'>点击购买</button>
+                </div>
               </div>
-              <div class='clear'></div>
-              <div class='positionbox'v-if="item.firstImg" >
-                <button class='buyBtnFirstImg'>点击购买</button>
-              </div>
-              <div v-else class='positionbox'>
-                <span class='span-title'>{{item.spanTitle}}</span>
-                <button class='buyBtn'>点击购买</button>
-              </div>
-            </div>
-          </Col>
+            </Col>
+          </div>
         </Row>
       </Card >
       <div class='clear'></div>
       <div class='needToBuyList'>
         <p class='needToBuyTitle'>必买清单</p>
         <ul class='toBuyImgList'>
-          <li v-for="(item,index) in toBuyImgList" :key="'imgID'+index">
+          <li v-for="(item,index) in toBuyImgList" :key="'imgID'+index" @click="goGoodsDetails('needBuy'+index)" >
             <img v-lazy="item" :class="'imgClass'+index">
           </li>
         </ul>
@@ -74,7 +76,7 @@
     <div class="all_babies">
       <button >查看全部宝贝</button>
     </div>
-    <div class="shop_cart_fiexd">
+    <div class="shop_cart_fiexd" @click="goCart">
       <Icon type="md-cart" size="24" />
     </div>
   </div>
@@ -232,6 +234,14 @@
       //热门分类
       ClothingStyle(hotIndex){
         this.$router.push('/home/cloth/'+hotIndex);
+      },
+      //跳转到商品详情页面
+      goGoodsDetails(id){
+        this.$router.push('/home/cloth/shopDetails/'+id);
+      },
+      //跳转到购物车页面
+      goCart(){
+        this.$router.push('/shopping_cart');
       },
       init(){
         this.$http({

@@ -201,27 +201,9 @@
           <div class="title"><img src="../../../assets/dedails/m_1.png" alt=""></div>
           <p>模特:嘟嘟 身高:95cm 体重:14kg 试穿尺码:110/9码</p>
           <ul class="model_show_list">
-            <li><img src="../../../assets/dedails/a.png" alt=""></li>
-            <li style="float:left;width:30%;height:60px;margin-top:30%;"><img style="width:100%;height:100%;" src="../../../assets/dedails/b.png" alt=""></li>
-            <li style="float:right;width:68%;height:260px;"><img style="width:100%;height:100%;" src="../../../assets/dedails/c.png" alt=""></li>
-            <li><img src="../../../assets/dedails/d.png" alt=""></li>
-            <li><img src="../../../assets/dedails/e.png" alt=""></li>
-            <li><img src="../../../assets/dedails/f.png" alt=""></li>
-            <li style="height:240px;"><img style="height:100%;" src="../../../assets/dedails/g.png" alt=""></li>
-            <li style="float:left;width:45%;height:200px;"><img src="../../../assets/dedails/h.png" alt=""></li>
-            <li style="float:right;width:50%;height:160px;margin-top:40px;"><img src="../../../assets/dedails/i.png" alt=""></li>
-            <li><img src="../../../assets/dedails/j.png" alt=""></li>
-            <li><img src="../../../assets/dedails/k.png" alt=""></li>
-            <li><img src="../../../assets/dedails/l.png" alt=""></li>
-            <li><img src="../../../assets/dedails/m.png" alt=""></li>
-            <li><img src="../../../assets/dedails/o.png" alt=""></li>
-            <li><img src="../../../assets/dedails/p.png" alt=""></li>
-            <li><img src="../../../assets/dedails/q.png" alt=""></li>
-            <li style="float:left;width:45%;height:200px;"><img src="../../../assets/dedails/r.png" alt=""></li>
-            <li style="float:right;width:50%;height:160px;margin-top:40px;"><img src="../../../assets/dedails/s.png" alt=""></li>
-            <li><img src="../../../assets/dedails/t.png" alt=""></li>
-            <li><img src="../../../assets/dedails/u.png" alt=""></li>
-            <li><img src="../../../assets/dedails/v.png" alt=""></li>
+            <li v-for="item in modelShowList">
+              <img v-lazy="item" />
+            </li>
           </ul>
         </div>
         <!--细节展示-->
@@ -274,6 +256,7 @@
   export default {
     data(){
       return{
+        //参考尺寸表格数据
         sizeColumns: [
           {
             title: '尺码',
@@ -344,7 +327,30 @@
             Collar: '80'
           }
         ],
-
+        //模特展示图片组
+        modelShowList:[
+          require('../../../assets/dedails/a.png'),
+          require('../../../assets/dedails/b.png'),
+          require('../../../assets/dedails/c.png'),
+          require('../../../assets/dedails/d.png'),
+          require('../../../assets/dedails/e.png'),
+          require('../../../assets/dedails/f.png'),
+          require('../../../assets/dedails/g.png'),
+          require('../../../assets/dedails/h.png'),
+          require('../../../assets/dedails/i.png'),
+          require('../../../assets/dedails/j.png'),
+          require('../../../assets/dedails/k.png'),
+          require('../../../assets/dedails/l.png'),
+          require('../../../assets/dedails/m.png'),
+          require('../../../assets/dedails/o.png'),
+          require('../../../assets/dedails/p.png'),
+          require('../../../assets/dedails/q.png'),
+          require('../../../assets/dedails/r.png'),
+          require('../../../assets/dedails/s.png'),
+          require('../../../assets/dedails/t.png'),
+          require('../../../assets/dedails/u.png'),
+          require('../../../assets/dedails/v.png')
+        ]
       }
     },
     methods:{
